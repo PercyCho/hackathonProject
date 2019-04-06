@@ -1,0 +1,167 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5419,        159]
+NotebookOptionsPosition[      4555,        139]
+NotebookOutlinePosition[      4909,        155]
+CellTagsIndexPosition[      4866,        152]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"WordProcess1", "[", "data_", "]"}], ":=", 
+  RowBox[{"StringJoin", "[", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"n", "<>", "\"\<; \>\""}], ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "data"}], "}"}]}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.763558376394175*^9, 3.76355840850769*^9}, {
+  3.7635584565687933`*^9, 3.763558515217032*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"8a713a81-4f62-4f52-a389-d89090a7d4de"],
+
+Cell[BoxData[
+ RowBox[{"If", "[", 
+  RowBox[{
+   RowBox[{"MemberQ", "[", 
+    RowBox[{"imageformatlist", ",", 
+     RowBox[{"FileFormat", "[", "data", "]"}]}], "]"}], ",", 
+   RowBox[{"blk", "=", 
+    RowBox[{"TextRecognize", "[", "img", "]"}]}], ",", 
+   RowBox[{"blk", "=", "img"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.763556519465394*^9, 3.763556539630581*^9}, {
+  3.7635566981286993`*^9, 3.7635567130733023`*^9}, {3.763557111645977*^9, 
+  3.7635571139370117`*^9}, {3.763557156547184*^9, 3.7635571693533077`*^9}, {
+  3.763557995148037*^9, 
+  3.763558077196465*^9}},ExpressionUUID->"aa57feb7-85f9-439e-ac2c-\
+76e100dc0dd2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"wordsprocess1", "=", 
+   RowBox[{"Flatten", "[", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"MemberQ", "[", 
+         RowBox[{
+          RowBox[{"WordData", "[", 
+           RowBox[{"n", ",", "\"\<PartsOfSpeech\>\""}], "]"}], ",", 
+          "\"\<Conjunction\>\""}], "]"}], ",", "n", ",", 
+        RowBox[{"{", "}"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"n", ",", 
+        RowBox[{"StringSplit", "[", "blk", "]"}]}], "}"}]}], "]"}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.763558185344845*^9, 
+  3.7635581856476297`*^9}},ExpressionUUID->"f797ff71-8f4a-45bd-a342-\
+9f088b37967c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"wordsprocess2", "=", 
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"words", "=", 
+       RowBox[{"TextRecognize", "[", "img", "]"}]}], "}"}], ",", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"WordFrequency", "[", 
+           RowBox[{"words", ",", "n"}], "]"}], "/", 
+          RowBox[{"WordFrequencyData", "[", "n", "]"}]}], ",", "n"}], "}"}], 
+       ",", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", "wordprocess1"}], "}"}]}], "]"}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.763558186753627*^9, 
+  3.763558187100635*^9}},ExpressionUUID->"200a02fc-22dd-44a4-b59c-\
+41ca79628702"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"wordsprocess3", "=", 
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"words", "=", "wordsprocess2"}], "}"}], ",", 
+     RowBox[{"Sort", "[", 
+      RowBox[{"wordprocess2", ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"#1", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], ">", 
+         RowBox[{"#2", "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "&"}]}], "]"}]}], "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{
+  3.7635581886957483`*^9},ExpressionUUID->"6fceddaf-a332-4c6e-b119-\
+99dab4135011"],
+
+Cell[BoxData[
+ RowBox[{"wordsprocess4", "=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"wordsprocess3", "[", 
+     RowBox[{"[", "n", "]"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"n", ",", "10"}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.763558202923332*^9, 3.7635582584954357`*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"2f2c9363-cc5f-4d16-98e1-b236ed0dd70a"],
+
+Cell[BoxData[
+ RowBox[{"SendMail", "[", 
+  RowBox[{"client", ",", 
+   RowBox[{"{", 
+    RowBox[{"\"\<here are the passage\>\"", ",", 
+     RowBox[{"\"\<keywords : \>\"", "<>", 
+      RowBox[{"WordProcess1", "[", "wordsprocess4", "]"}]}]}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.763558297089345*^9, 3.763558365240239*^9}, {
+  3.763558523002411*^9, 3.763558531434972*^9}, {3.763558578686968*^9, 
+  3.7635585948841553`*^9}},ExpressionUUID->"08d822b7-4f68-456a-9c00-\
+be48ec363822"]
+},
+WindowSize->{1920, 1086},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 474, 11, 30, "Input",ExpressionUUID->"8a713a81-4f62-4f52-a389-d89090a7d4de"],
+Cell[1035, 33, 630, 14, 30, "Input",ExpressionUUID->"aa57feb7-85f9-439e-ac2c-76e100dc0dd2"],
+Cell[1668, 49, 695, 20, 30, "Input",ExpressionUUID->"f797ff71-8f4a-45bd-a342-9f088b37967c"],
+Cell[2366, 71, 731, 22, 30, "Input",ExpressionUUID->"200a02fc-22dd-44a4-b59c-41ca79628702"],
+Cell[3100, 95, 571, 18, 30, "Input",ExpressionUUID->"6fceddaf-a332-4c6e-b119-99dab4135011"],
+Cell[3674, 115, 383, 9, 30, "Input",ExpressionUUID->"2f2c9363-cc5f-4d16-98e1-b236ed0dd70a"],
+Cell[4060, 126, 491, 11, 30, "Input",ExpressionUUID->"08d822b7-4f68-456a-9c00-be48ec363822"]
+}
+]
+*)
+
